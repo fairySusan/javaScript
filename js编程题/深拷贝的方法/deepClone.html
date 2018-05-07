@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>数组和对象的深拷贝</title>
+</head>
+<body>
+
+</body>
+	<script type="text/javascript">
+	/**1.这个函数可以深拷贝 对象和数组**/
+	// var cloneObj = function(obj){
+	//     var str, newobj = obj.constructor === Array ? [] : {};
+	//     if(typeof obj !== 'object'){
+	//         return;
+	//     } else {
+	//         for(var i in obj){
+	//             newobj[i] = typeof obj[i] === 'object' ? cloneObj(obj[i]) : obj[i]; 
+	//         }
+	//     }
+ 	//    	return newobj;
+	// }
+	/**2.可以通过for循环来实现数组的深拷贝**/
+	var arr = [1,2,3,4,5]
+	var arr2 = copyArr(arr)
+	function copyArr(arr) {
+	    let res = []
+	    for (let i = 0; i < arr.length; i++) {
+	     res.push(arr[i])
+	    }
+	    return res
+	}
+	/**3.Array对象的slice()函数也可以实现深拷贝数组**/
+	/*对象的深拷贝*/
+	/*1.万能的for循环实现对象的深拷贝*/
+	var obj = {
+	  name: 'FungLeo',
+	  sex: 'man',
+	  old: '18'
+	}
+	var obj2 = copyObj(obj)
+	function copyObj(obj) {
+	  let res = {}
+	  for (var key in obj) {
+	    res[key] = obj[key]
+	  }
+	  return res;
+	}
+	};
+	/*2.转换成json再转换成对象实现对象的深拷贝*/
+	var obj = {
+	  name: 'FungLeo',
+	  sex: 'man',
+	  old: '18'
+	}
+	var obj2 = JSON.parse(JSON.stringify(obj));
+	</script>
+</html>

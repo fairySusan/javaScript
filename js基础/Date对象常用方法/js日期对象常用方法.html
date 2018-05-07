@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>js日期对象的常用方法</title>
+	<meta charset="utf-8">
+</head>
+<body>
+<h1>显示一个数字时钟</h1>
+<span id="time"></span>
+</body>
+<script type="text/javascript">
+	var d = new Date();
+	console.log(d);//Sun Mar 18 2018 10:11:18 GMT+0800 (中国标准时间)
+	console.log(d.getTime());//返回从 1970 年 1 月 1 日至今的毫秒数。1521339173795
+	console.log(d.getDay());//从 Date 对象返回一周中的某一天 (0 ~ 6)。0:周七，1：周一
+	console.log(d.getDate());//返回几号
+	console.log(d.getMonth());//返回几月(0~11)，0:1月，11:12月
+	console.log(d.getFullYear());//返回年份2018
+	console.log(d.getHours());//返回当前时间的小时数
+	console.log(d.getMinutes());//返回当前时间的分钟数
+	console.log(d.getSeconds());//返回当前时间的秒数
+	function showTime(){
+		var date = new Date();
+		var hour = date.getHours();
+		var minute = date.getMinutes();
+		var second = date.getSeconds();
+		document.getElementById('time').innerHTML = checkTime(hour) +":"+checkTime(minute)+":"+checkTime(second);
+		setTimeout(showTime,500);
+	}
+	function checkTime(t){
+		if (t<10) {
+		  t = '0'+t;
+		}
+		return t;
+	}
+	showTime();
+</script>
+</html>

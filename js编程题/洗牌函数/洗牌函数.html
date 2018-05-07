@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>洗牌函数</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	/* 洗牌函数 */
+	function getRandomInt(min,max){
+	    return Math.floor(Math.random()*(max-min+1)+min);//产生一个在min和max之间的随机数
+	}
+	function shuffle(arr){
+	    let newArr =  arr.slice();//深拷贝
+	    for (let i=0;i<newArr.length;i++) {
+	        let j = getRandomInt(0,i);
+	        let temp = newArr[j];
+	        newArr[j] = newArr[i];
+	        newArr[i] = temp;
+	    }
+	    return newArr;
+	}
+</script>
+</html>

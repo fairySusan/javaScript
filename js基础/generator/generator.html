@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Generator函数</title>
+</head>
+<body>
+	<h1>Generator函数可以通过yield和next()来进行暂停和继续执行，这是它能封装异步任务的根本原因。</h1>
+</body>
+<script type="text/javascript">
+	function* getApple(m){
+		var price = yield 3*m;
+		console.log("苹果的价格：",price);
+	}
+	var a = getApple(10);
+	a.next();
+	console.log("执行");
+	a.next(30);
+</script>
+</html>

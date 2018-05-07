@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>js跳转页面的方法</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	/*第一种*/
+	// window.location 对象用于获得当前页面的地址 (URL)，并把浏览器重定向到新的页面。
+	window.location.href = "http://news.163.com/";
+
+	// history.back() - 与在浏览器点击后退按钮相同
+	// history.forward() - 与在浏览器中点击按钮向前相同
+	/*第二种*/
+	alert("返回"); 
+	window.history.back(-1); 
+</script>
+</html>

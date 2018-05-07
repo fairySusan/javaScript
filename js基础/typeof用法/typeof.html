@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>typeof和valueOf()的用法</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	if (typeof a!="undefined") {
+		alert("ok");
+	}
+	var b = [1,2,3];
+	var c = {
+		v1:1,
+		v2:2
+	};
+	var d = null;
+	var e = function (argument) {
+		alert("haha");
+	}
+	var f = "gogogogo";
+	var n = 23;
+	console.log(typeof (a));//undefined
+	console.log(typeof (b));//b为数组，打印为object
+	console.log(typeof (c));//c为对象，打印为object
+	console.log(typeof (d));//d为null，打印为object
+	console.log(typeof (e));//e为函数，打印为function
+	console.log(typeof (f));//f为字符串，打印为string
+	console.log(typeof (n));//n位number，打印为为number
+	console.log("valueOf()的用法");
+	//console.log(a.valueOf());//报错a没有被定义
+	console.log(b.valueOf());//打印 [1,2,3]
+	console.log(c.valueOf());//Object {v1: 1, v2: 2}
+	//console.log(d.valueOf());//null没有valueOf()方法。打印报错
+	console.log(e.valueOf());
+	console.log(f.valueOf());//gogogo
+	console.log(n.valueOf());//123
+</script>
+</html>

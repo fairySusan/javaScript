@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<h1>
+		如果a只是被声明了，那么a就会被function a(){}覆盖，如果a被声明了，也被赋值了，a就是变量a，不是函数a
+	</h1>
+	<h2>也就是说函数声明会覆盖变量声明，不会覆盖变量赋值</h2>
+</body>
+<script type="text/javascript">
+	var a = 1;
+	function a(){
+		document.write("run");
+	}
+	console.log(a);//打印是function a(){document.write("run");}
+</script>
+</html>

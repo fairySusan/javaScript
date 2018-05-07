@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ajax的学习</title>
+</head>
+<body>
+	<div id="dd">
+		
+	</div>
+</body>
+<script type="text/javascript">
+	window.onload = function(){
+		var xr;
+		if (window.XMLHttpRequest) {
+			//ie7+ chrome safari FF opera浏览器
+			xr = new XMLHttpRequest();
+		}else{
+			//ie5 ie6 浏览器
+			xr = new ActiveXObject('microsoft.XMLHTTP')
+		}
+		xr.onreadystatechange = function(){
+			if (xr.readyState==4 && xr.status==200) {
+				document.getElementById('dd').innerHTML = xr.responseText;
+			
+		}
+		xr.open("GET",'http://www.runoob.com/try/try.php?filename=tryajax_first',true);
+		xr.send();
+</script>
+</html>

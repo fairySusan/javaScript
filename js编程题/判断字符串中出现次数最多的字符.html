@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>判断字符串中出现次数最多的字符</title>
+</head>
+<body>
+	<div>
+		
+	</div>
+</body>
+<script type="text/javascript">
+	var s = 'yooooooopppp';
+	var json = {};
+	function getWords(){
+		for (var i = 0;i<s.length;i++) {
+			if (!json[s.charAt(i)]) {
+				json[s.charAt(i)] = 1;//第一次出现，赋值为1
+			}else{
+				json[s.charAt(i)]++;//以后出现++
+			}
+		}
+	}
+	/*判断出现最多的字母和次数*/
+	function maxWords(){
+		var iMax = 0;
+		var a = '';
+		for(var i in json){
+			if (json[i]>iMax) {
+				iMax = json[i];
+				a = i;
+			}
+		}
+		console.log("出现最多的字符:",a);
+		console.log("出现次数：",iMax);
+	}
+	getWords();
+	maxWords();
+</script>
+</html>
