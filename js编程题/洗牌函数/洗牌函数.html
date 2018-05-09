@@ -11,7 +11,7 @@
 	function getRandomInt(min,max){
 		/* 产生一个在min和max之间的随机数，
 		这里加1是因为random()产生的数不包括1，也就是[min,max),这样就取不到max，
-		[min,max+1)可以取到max，记得floor()向下取整 */
+		[min+1,max+1)可以取到max，记得floor()向下取整 */
 	    return Math.floor(Math.random()*(max-min+1)+min);
 	}
 	function shuffle(arr){
