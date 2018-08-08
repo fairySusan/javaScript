@@ -6,7 +6,9 @@
 <body>
 	<h1>for in里的i是对象，for in可以用来遍历数组和对象</h1>
 	<h2>for in 遍历数组的时候i为下标，遍历对象的时候i为键名</h2>
-	<h1>for of里的i是数组里的元素，并且for of不可以用来遍历对象</h1>
+	<h1>for of里的i是数组里的元素，并且for of不可以用来遍历对象, 因为对象里面没有迭代器，只有Symbol.iterator属性的数据结构
+		才能使用for of遍历
+	</h1>
 </body>
 <script type="text/javascript">
 	var obj = {
