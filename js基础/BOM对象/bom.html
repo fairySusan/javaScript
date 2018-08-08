@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>bom对象</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<h1>浏览器对象模型---BOM</h1>
+	<h2 id="w"></h2>
+	<h2 id="h"></h2>
+	<h2>window.location对象</h2>
+</body>
+<script type="text/javascript">
+	var w = window.innerWidth || document.documentElement.clientWidth 
+	|| document.body.clientWidth;
+	var h = window.innerHeight || document.documentElement.clientHeight 
+	|| document.body.clientHeight;
+	document.getElementById('w').innerHTML='浏览器的宽度是：'+w;
+	document.getElementById('h').innerHTML='浏览器的高度是：'+h;
+</script>
+</html>

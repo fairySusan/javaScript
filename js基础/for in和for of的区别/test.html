@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>for in和for of的区别</title>
+</head>
+<body>
+	<h1>for in里的i是对象，for in可以用来遍历数组和对象</h1>
+	<h2>for in 遍历数组的时候i为下标，遍历对象的时候i为键名</h2>
+	<h1>for of里的i是数组里的元素，并且for of不可以用来遍历对象</h1>
+</body>
+<script type="text/javascript">
+	var obj = {
+		name:'susan',
+		age:18,
+		eat:function(){
+			console.log('apple');
+		}
+	}
+	var arr = [1,6,3,8];
+	for(var i in obj){
+		console.log(i);//打印出来是name age eat
+	}
+	for(let m in arr){
+		console.log(m);
+	}
+	for(var i of arr){
+		console.log(i);//j:1 2 3
+	}
+</script>
+</html>

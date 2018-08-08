@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>js创建对象的几种方式</title>
+</head>
+<body>
+
+</body>
+	<script type="text/javascript">
+		/*1.对象字面量的方式*/
+		var person = {firstName:"mark",lastName:"yun",age:25,eyeColor:"black"}
+		/*2.用function来模拟无参的构造函数*/
+		function person() {}
+		var person1 = new person();
+		person1.firstName = "mark";
+		person1.lastName = "yun";
+		person1.age = 25;
+		person1.work = function() {
+			//方法......
+		}
+		/*3.构造函数创建对象*/
+		function pets(firstName,lastName,age){
+			this.firstName = firstName;
+			this.lastName = lastName;
+			this.age = age;
+			this.eat = function() {
+				//方法......
+			}
+		}
+		var dog = new pets("mark","huf",25);
+		dog.eat();
+		/*4.用工厂方式来创建（内置对象）*/
+		var cat = new Object();
+		cat.lastName = "mark";
+		cat.firstName = "huf";
+		cat.age = 24;
+		cat.work = function() {
+			//方法......
+		}
+		cat.work();
+		/*5.用prototype的方式来创建*/
+		function pets(){}
+		pets.prototype.firstName = "mark";
+		pets.prototype.lastName = "huf";
+		pets.prototype.work = function() {
+			//方法......
+		}
+		var dog = new pets();
+		dog.work();
+		/*6.用混合方式创建对象*/
+		function pets(firstName,lastName,age) {
+			this.firstName = firstName;
+			this.lastName = lastName;
+			this.age = age;
+		}
+		pets.prototype.work = function() {
+			//方法......
+		}
+		var dog = pets("mark","huf",24);
+		dog.work();
+	</script>
+</html>

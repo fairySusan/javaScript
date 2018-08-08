@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>数组的map方法</title>
+	<meta charset="utf-8">
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	var a = [1,3,7,5,9];
+	var n = a.map(f);//第一个参数为一个函数，用来处理数组，并返回一个处理后的数组
+	function f(num,index,obj){//num:当前元素，index：当前元素的索引值，obj：指a这个对象
+		return num*2;//必须要把处理后的数return
+	}
+	console.log(n);
+</script>
+</html>

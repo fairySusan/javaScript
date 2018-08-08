@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>如何获取浏览器url的查询参数</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	// var a = window.location.href;
+	var a = "http://www.runoob.com/jquery/misc-trim.html?channelid=12333&name=xiaoming&age=23";
+	function getParams(a){
+		var params = a.split("?");
+		var paramsArr = params[1].split("&");
+		var obj ={};
+		for(i of paramsArr){
+			var temp = i.split("=");
+			obj[temp[0]] = temp[1];
+		}
+		console.log(obj);
+	}
+	
+	getParams(a);
+</script>
+</html>

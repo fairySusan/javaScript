@@ -1,0 +1,32 @@
+*{margin: 0;padding: 0}
+.slider-container{
+}
+.slider-img{
+	width: 50%;
+	margin: 0 auto;
+	display: none;
+}
+.dot{
+	width: 13px;
+	height: 13px;
+	border-radius: 50%;
+	background:#bbb;
+	display: inline-block;
+}
+.active, .dot:hover {
+  background-color: #717171;
+}
+.fade{
+	-webkit-animation-name:fade;
+	-webkit-animation-duration:1.5s;
+	animation-name:fade;
+	animation-duration: 1.5s;
+}
+@-webkit-keyframes fade{
+	from{opacity: 0.4}
+	to{opacity: 1}
+}
+@keyframes fade{
+	from{opacity: 0.4}
+	to{opacity: 1}
+}

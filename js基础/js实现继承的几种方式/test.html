@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>js实现继承的几种方式</title>
+</head>
+<body>
+
+</body>
+	<script type="text/javascript">
+		/*-------------------构造函数的继承----------------------*/
+		function Animal() {
+			this.species = "动物"
+		}
+
+		/*1.使用apply和call方法*/
+
+		//cat如何继承animation？
+		function Cat(name,color) {
+			//Animal.apply(this,arguments);//关键的一行
+			this.name = name;
+			this.color = color;
+		}
+		var cat1 = new Cat("加菲","白色");
+		console.log(cat1.species);
+
+		/*2.prototype模式继承*/
+		Cat.prototype = new Animal();
+		console.log(Cat.prototype);
+		console.log(Cat.prototype.constructor);//Cat.prototype.constructor指向了Animal
+		Cat.prototype.constructor = Cat;//重新指向Cat
+		var cat2 = new Cat("汤姆","黑色");
+		console.log(cat2.species);
+
+		/*3.直接继承prototype*/
+		function Animal() {}
+		Animal.prototype.species = "动物";
+		function Cat(name,color){
+			this.name = name;
+			this.color = color;
+		}
+		Cat.prototype = Animal.prototype;
+		Cat.prototype.constructor = Cat;
+		var cat3 = new Cat("Tom","pink");
+		console.log(cat3.species);
+		/*-------------------非构造函数的继承----------------------*/
+		var Chinese = {
+			nation:"中国"
+		};
+		var Doctor = {   //Doctor要继承Chinese对象
+			career:"医生"
+		};
+		/*1.浅拷贝的方法继承*/
+		function extentCopy(p){
+			var c = {};
+			for(var i in p){
+				c[i] = p[i];
+			}
+			c.name = "susan";
+			return c;
+		}
+		Doctor = extentCopy(Chinese);
+
+		/*2.深拷贝的方法继承*/
+		function deepCopy(p,c){
+			var c = c || {};
+			for(var i in p){
+				if(typeof p[i] === "object"){  //指数组、对象、函数
+					c[i] = (p[i].constructor) === Array ? [] : {};
+					c[i] = p[i];
+				}else{ //指number、undefine、null、string
+     				c[i] = p[i];
+				}
+			}
+			return c;
+		}
+		Doctor = deepCopy(Chinese);
+	</script>
+</html>

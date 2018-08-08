@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>事件委托机制</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		body{
+			margin:0;
+			padding: 0;
+		}
+		ul li{
+			border:1px solid red;
+			padding:5px;
+		}
+	</style>
+</head>
+<body>
+	<h1>事件委托</h1>
+	<h2>无论li绑没绑click事件，只要被点击了，事件就会冒泡到父元素上</h2>
+	<ul id="uli">
+		<li>bbbb</li>
+		<li>aaaa</li>
+		<li>cccc</li>
+		<li>dddd</li>
+	</ul>
+</body>
+<script type="text/javascript">
+	var uli = document.getElementById('uli');
+	uli.addEventListener('click',function(e){
+		var e = e || window.event;
+		//不加判断语句的话，点击ul也会弹出123
+		//加了判断语句，点击ul不会弹出123
+		if(e.target.nodeName.toLowerCase() == 'li'){
+			alert('123');
+		}
+	});
+</script>
+</html>

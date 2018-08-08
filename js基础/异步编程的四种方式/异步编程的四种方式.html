@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>异步编程的四种方式</title>
+	<meta charset="utf-8">
+	<meta name="author" content="fairySusan">
+	<meta name="keyword" content="html CSS js">
+</head>
+<body>
+	<h1>1.回调函数</h1>
+</body>
+<script type="text/javascript">
+	// 1.回调函数
+	function f1(f){
+		setTimeout(function(){
+			f2();
+		},1000);//
+		f3();
+	}
+	function f2(){
+		console.log("run f2");
+	}
+	function f3(){
+		console.log("run f3");
+	}
+	f1(f2);
+</script>
+</html>

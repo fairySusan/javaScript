@@ -1,0 +1,23 @@
+*{margin:0;padding: 0;}
+.ul-wrap{
+	width: 50%;
+	margin:0 auto;
+}
+.accordion-contioner{
+	list-style: none;
+}
+.title{
+	height: 25px;
+	background: yellow;
+}
+.active,.title:hover{
+	background-color: #ddd;
+	cursor: pointer;
+}
+.details{
+	/*关键点*/
+	overflow: hidden;
+	max-height: 0;
+	background: blue;
+	transition: max-height 0.2s ease-out;
+}

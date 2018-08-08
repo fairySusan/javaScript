@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>数组去重的方法</title>
+</head>
+<body>
+	<div id="text"></div>
+</body>
+<script type="text/javascript">
+/*第一种去重的方法
+1.构建一个新的数组存放结果
+2.for循环中每次从原数组中取出一个元素，用这个元素循环与结果数组对比
+3.若结果数组中没有该元素，则存到结果数组中
+**/ 
+	// window.onload = function (){
+	// 	var oldArr = [1,2,3,1,4,8,0,1,2,4,6,6,6];
+	// 	var newArr = [oldArr[0]];
+	// 	for(var i=0;i<oldArr.length+1;i++){
+	// 		var repeat = false;
+	// 		for(var j=0;j<newArr.length;j++){
+	// 			if (oldArr[i]==newArr[j]) {
+	// 				repeat = true;
+	// 			}
+	// 		}
+	// 		if (!repeat) {
+	// 			newArr.push(oldArr[i]);
+	// 		}
+	// 	}
+	// 	alert(newArr);
+	// }
+/*第二种去重的方法
+1.先将原数组进行排序
+2.检查原数组中的第i个元素 与 结果数组中的最后一个元素是否相同，因为已经排序，所以重复元素会在相邻位置
+3.如果不相同，则将该元素存入结果数组中
+*/
+	// window.onload = function () {
+	// 	var oldArr = [1,2,3,1,4,8,0,1,2,4,6,6,6];
+	// 	oldArr.sort();//将原数组进行排序
+	// 	var newArr = [oldArr[0]];
+	// 	for (var i = 0; i <oldArr.length; i++) {
+	// 		var repeat = false;
+	// 		if(oldArr[i]==newArr[newArr.length-1]){
+	// 			repeat = true;
+	// 		}
+	// 		if (!repeat) {
+	// 			newArr.push(oldArr[i]);
+	// 		}
+	// 	}
+	// 	alert(newArr);
+	// }
+/*
+第三种去重的方法(推荐第三种方法)
+1.创建一个新的数组存放结果
+2.创建一个空对象
+3.for循环时，每次取出一个元素与对象进行对比，如果这个元素不重复，则把它存放到结果数组中，同时把这个元素的内容作为对象的一个属性，并赋值为1，存入到第2步建立的对象中。
+说明：至于如何对比，就是每次从原数组中取出一个元素，然后到对象中去访问这个属性，如果能访问到值，则说明重复。
+*/
+	window.onload = function(){
+		var oldArr = [1,2,3,1,4,8,0,1,2,4,6,6,6];
+		var newArr = [];
+		var newObj ={};
+		for(var i=0;i<oldArr.length;i++){
+			if(!newObj[oldArr[i]]){
+				newArr.push(oldArr[i]);
+				newObj[oldArr[i]]=1;
+			}
+		}
+		alert(newArr);
+	}
+	/*第四种方法，用indexOf的方法,第四种方法也推荐*/
+	window.onload = function(){
+		var oldArr = [1,2,3,1,4,8,0,1,2,4,6,6,6];
+		var newArr = [];
+		for(var i of oldArr){
+			if (newArr.indexOf(oldArr[i])<0) {
+				newArr.push(oldArr[i]);
+			}
+		}
+	}
+	/* 或者下面这种*/
+	window.onload = function() {
+		var oldArr = [1,2,3,1,4,8,0,1,2,4,6,6,6];
+		var newArr = [];
+		oldArr.forEach((value,index,arr) => {
+			if(!newArr.includes(value)){
+				newArr.push(value);
+			}
+		})
+		console.log("xxx",newArr);
+	}
+	/* 第五种方法，用ES6的set的数据结构去重 */
+	window.onload = function() {
+		var oldArr = [1,2,3,1,4,8,0,1,2,4,6,6,6];
+		var newArr = [...new Set(oldArr)];
+		console.log("newArr:",newArr);
+	}
+</script>
+</html>

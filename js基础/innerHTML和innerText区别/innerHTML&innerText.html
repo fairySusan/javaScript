@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div id="iaa">i am very <span>youxiu</span></div>
+	<h1 id="te"></h1>
+	<h1 id="ta"></h1>
+	<h2>innerHTML可以直接写入标签，会解析标签</h2>
+	<h2>innerText只是获取文本内容，会把标签当文本显示</h2>
+</body>
+<script type="text/javascript">
+	var s = document.getElementById('iaa').innerText
+	document.write(s);
+	console.log(s);
+	document.getElementById('te').innerText = '<i>i love you </i>';
+	document.getElementById('ta').innerHTML = '<i>i love you </i>';
+</script>
+</html>

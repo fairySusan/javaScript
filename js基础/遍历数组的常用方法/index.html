@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>遍历数组</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div>
+        <h3>1. for-in</h3>
+        <p>for(keys in arr)一般用于遍历对象和数组，keys是对象的键名，是数组的下标，缺点下标是字符串</p>
+        <h3>2. for-of</h3>
+        <p>for(value of arr)只能遍历数组，value是数组的元素，缺点拿不到下标</p>
+        <h3>3. for-i++</h3>
+        <p>不用解释了</p>
+        <h3>4. arr.forEach(function(currentValue, index, arr), thisValue)</h3>
+        <p>forEach()遍历数组的每个元素，没有返回值</p>
+        <h3>5. arr.map(function(currentValue,index,arr), thisValue)</h3>
+        <p>map()遍历数组的每个元素，有返回值，返回一个新的数组</p>
+        <h3>6. arr.filter(function(currentValue,index,arr))</h3>
+        <p>从数组中选择符合条件的元素组成新的数组，并返回</p>
+
+        <h2>查找某个元素</h2>
+        <h3>1. arr.find()</h3>
+        <p>有返回值，返回满足回调函数的第一个元素</p>
+        <h3>2. arr.findIndex()</h3>
+        <p>有返回值，返回满足回调函数的第一个元素的下标</p>
+
+        <h2>返回Array迭代器对象</h2>
+        <h3>1. arr.keys()</h3>
+        <p>方法返回一个新的Array迭代器，它包含数组中每个索引的键。</p>
+        <h3>2. arr.values()</h3>
+        <p>方法返回一个新的Array迭代器，它包含数组中每个索引的值。</p>
+
+        <h2>返回true或false</h2>
+        <h3>1. arr.includes()</h3>
+        <p>判断数组中是否包含某个元素，参数传入一个值，返回true或false</p>
+        <h2>2. arr.every(()=>{})</h2>
+        <p>对每一项运行回调函数，如果该函数对每一项都返回true，则返回true</p>
+        <h2>3. arr.some(()=>{})</h2>
+        <p>对每一项运行回调函数，如果该函数有任意一项返回true，则返回true</p>
+    </div>
+</body>
+<script>
+var arr = [1,2,3,4,5,6];
+//Array.prototype.forEach()
+arr.forEach((value,index,arr) => {
+    arr[index] = value*2;
+})
+console.log("arr:",arr);
+
+//Array.prototype.map()
+var arr2 = arr.map((value,index,arr) => {return value*2});
+console.log("arr2:",arr2);
+
+//Array.prototype.find()
+var element1 = arr.find((element) => {return element > 10})
+console.log("element1:",element1);
+
+//Array.prototype.findIndex()
+var index1 = arr.findIndex((element) => {return element>10})
+console.log("index1:",index1);
+
+//Array.prototype.keys()
+var iterator1 = arr.keys();
+for(keys of iterator1){
+    console.log("keys:",keys);
+}
+//Array.prototype.values()
+var iterator2 = arr.values();
+for(values of iterator2){
+    console.log("values:",values);
+}
+//Array.prototype.includes()
+var isInclude = arr.includes(12);
+console.log("isInclude:",isInclude);
+
+//Array.prototype.every()
+var isTrue = arr.every((value,index,arr) => { return value>0 })
+console.log("isTrue:",isTrue);
+
+//Array.prototype.some()
+var isTrue1 = arr.some((value,index,arr) => { return value>11});
+console.log("isTrue1:",isTrue1);
+//Array.prototype.filter()
+var filterArr = arr.filter((value,index,arr) => {return value>5})
+console.log("filterArr:",filterArr);
+</script>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>封装一个XMLHttpRequest函数</title>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+<script type="text/javascript">
+	var xmr;
+	function requestFun(methods,url,fun,params){
+		if (window.XMLHttpRequst) {
+			xmr = new XMLHttpRequst();
+		}else{
+			xmr = new ActiveXObject('microsoft.XMLHTTP');
+		}
+		xmr.onreadystatechange = fun;
+		xmr.open(methods,url,true);
+		xmr.send(params);
+	}
+	function a(){
+		function b(){
+			if (xmr.readyState == 4 && status == 200){
+				console.log(xmr.responseText);
+			}
+		}
+		requestFun('get','url',b);
+	}
+</script>
+</html>

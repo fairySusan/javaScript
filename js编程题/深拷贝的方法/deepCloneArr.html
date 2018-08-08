@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	/*浅拷贝*/
+	var a = [1,2,3,4];
+	var b = a;
+	b.push(5);
+	console.log("a:",a);//[1,2,3,4,5]
+	console.log("b:",b);//[1,2,3,4,5]
+	/*1.暴力深拷贝数组*/
+	var c = [1,2,3,4,5];
+	var d = JSON.parse(JSON.stringify(c));
+	d.push(6);
+	console.log("c:",c);
+	console.log("d:",d);
+	//如果暴力深拷贝对象的话，对象里的方法不能被拷贝
+	var e = {
+		name:'susan',
+		age:24,
+		act:function(){
+			console.log("跳舞");
+		}
+	}
+	var f = JSON.parse(JSON.stringify(e));
+	console.log("e:",e);
+	console.log("f",f);//{name:'susan',age:24}
+	/*2.concat()和slice()可以实现数组的深拷贝*/
+	var g = [1,2,3,4,5,6];
+	var h = g.concat([]);
+	h.push(7);
+	console.log("g:",g);//[1,2,3,4,5,6]
+	console.log("h:",h);//[1,2,3,4,5,6,7]
+
+	var h2 = g.slice(0);
+	h2.push(7);
+	console.log("h2:",h2);//[1,2,3,4,5,6,7]
+
+	/*3.使用for循环实现数组的深拷贝*/
+	var j = [1,2,3,4];
+	var k = [];
+	for(var i of j){
+		k.push(i);
+	}
+	k.push(5);
+	console.log("j:",j);
+	console.log("k:",k);
+</script>
+</html>
