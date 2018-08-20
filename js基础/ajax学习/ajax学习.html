@@ -21,9 +21,11 @@
 		xr.onreadystatechange = function(){
 			if (xr.readyState==4 && xr.status==200) {
 				document.getElementById('dd').innerHTML = xr.responseText;
+			}
 			
 		}
 		xr.open("GET",'http://www.runoob.com/try/try.php?filename=tryajax_first',true);
 		xr.send();
+	}
 </script>
 </html>
