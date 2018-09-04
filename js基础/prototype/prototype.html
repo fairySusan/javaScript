@@ -8,11 +8,20 @@
 </body>
 <script type="text/javascript">
 	function a(){
-		this.name = "taorui";//这里的this指向b对象
+		this.name = "a";//这里的this指向b对象
 		this.age = 21;
 	}
 	a.prototype.sex = "girl";
+	a.prototype.walk = function() {
+		console.log("a走路了");
+	}
+	a.sky = 'blue';//定义在了prototype的constructor里
+
 	var b = new a();
+	b.name = "b"
+	b.walk = function(name) {
+		console.log("b走路了");
+	}
 	window.onload = function() {
 		console.log("a.prototype",a.prototype);//a.prototype里只有sex属性，没有name和age属性
 		console.log("b.__proto__",b.__proto__);
@@ -20,8 +29,10 @@
 		console.dir(a.prototype.__proto__);//指向Object.prototype
 		console.log("a.__proto__");
 		console.dir(a.__proto__);//指向Function.prototype
-		console.log("b.name",b.name);
-		console.log("b.sex",b.sex);
+		console.log("b.name",b.name);//taorui
+		console.log("b.sex",b.sex);//girl
+		console.log("b.sky",b.sky);//undefined
+		console.log("b.construcor.sky",b.constructor.sky);//blue
 		//js所有的对象都是由函数创建的，包括Object
 		console.log("typeof Object",typeof Object);//function
 		console.log("typeof Function",typeof Function);//function
@@ -39,6 +50,11 @@
 		/*所有对象的prototype.__proto__都指向Object.prototype*/
 		/*对象的__proto__属性一定是指向的创建这个对象的对象的prototype*/
 		console.dir(Object.prototype.__proto__);//null
+
+
+		/* 当子对象定义了与父对象一样名字的属性和方法时，子对象调用属性和方法是调用的本身的属性和方法 */
+		console.log(b.name);//b
+		b.walk();//b走路了
 	}
 </script>
 </html>

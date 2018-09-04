@@ -5,11 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>表单脚本</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="main.js"></script>
 </head>
 <body>
-    <form action="" method="post">
-
+    <form action="/login" method="post" target="_self" name="login-form">
+        <label for="login-name">登录名：</label>
+        <input type="text" id="login-name" name="loginName">
+        <label for="password">密码：</label>
+        <input type="password" id="password" name="password">
+        <button type="submit">提交</button>
+        <button type="reset">重置</button>
     </form>
+    <div>
+        <h3>1.submit按钮提交方式，页面会跳转</h3>
+    </div>
 </body>
+<script src="/main.js"></script>
 </html>
