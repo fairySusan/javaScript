@@ -73,11 +73,13 @@ module.exports = {
 3.	webpack-dev-middleware
 
 第一种：
+
 ![管理输出图5](./img05.png)
 
 然后npm run watch,以后改了代码，会自动编译修改后的模块，缺点是浏览器不能自动刷新。
 第二种：npm install –save-dev webpack-dev-server
 
 ![管理输出图6](./img06.png)
+
 npm run start 就可以实现自动编译和自动刷新。并且项目在localhost:8080访问。
 
