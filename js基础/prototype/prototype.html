@@ -8,7 +8,7 @@
 </body>
 <script type="text/javascript">
 	function a(){
-		this.name = "a";//这里的this指向b对象
+		this.name = "a";//这里的this指向b对象，name和age是直接定义在实例上面的，不在a的prototype上
 		this.age = 21;
 	}
 	a.prototype.sex = "girl";
@@ -18,12 +18,13 @@
 	a.sky = 'blue';//定义在了prototype的constructor里
 
 	var b = new a();
-	b.name = "b"
+	b.name = "taorui";
+	b.selfName = 'lijiankuo';
 	b.walk = function(name) {
 		console.log("b走路了");
 	}
 	window.onload = function() {
-		console.log("a.prototype",a.prototype);//a.prototype里只有sex属性，没有name和age属性
+		console.log("a.prototype",a.prototype);//a.prototype里只有sex属性，没有name和age属性, name和age是直接定义在实例上面的
 		console.log("b.__proto__",b.__proto__);
 		console.log("a.prototype.__proto__");
 		console.dir(a.prototype.__proto__);//指向Object.prototype
