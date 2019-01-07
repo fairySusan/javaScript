@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>把id相同的对象取到同一个数组</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    
+</body>
+<script>
+var arr = [
+    {id: 1, name: 'zhangsan'},
+    {id: 2, name: 'lisi'},
+    {id: 2, name: 'wnagwu'},
+    {id: 2, name: 'cccc'},
+    {id: 4, name: 'vvvvv'},
+    {id: 6, name: 'zhangsan'},
+    {id: 6, name: 'lllll'},
+    {id: 7, name: 'zhangsan'},
+    {id: 1, name: 'zhangsan'},
+];
+function classify(arr) {
+    let newArr = {};
+    arr.forEach(element => {
+        if (element.id in newArr) {
+         newArr[element.id].push(element);
+        } else {
+         newArr[element.id] = [];
+         newArr[element.id].push(element);
+        }
+    });
+    return newArr;
+}
+const res = classify(arr);
+console.log('res', res);
+</script>
+</html>
