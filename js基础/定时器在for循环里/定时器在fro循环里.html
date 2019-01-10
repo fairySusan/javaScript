@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    
+</body>
+<script>
+    var arr = [1,2,3,4];
+    arr.forEach(item => {
+        setInterval(() => {
+            console.log(item);
+        }, 3000);
+    });
+    // 为什么3s同时打印1,2,3,4？ 因为for循环了出了4个timer，每个timer分别打印1,2,3,4;
+</script>
+</html>
