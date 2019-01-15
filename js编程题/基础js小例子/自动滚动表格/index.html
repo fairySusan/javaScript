@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>滚动的表格</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+
+<body>
+    <div id="tablebox">
+        <table>
+            <thead>
+                <tr>
+                    <td>序号</td>
+                    <td>姓名</td>
+                    <td>年龄</td>
+                    <td>性别</td>
+                    <td>班级</td>
+                    <td style="width: 104px;">学号</td>
+                </tr>
+            </thead>
+            <tbody id="tbox">
+                <tr>
+                    <td>1</td>
+                    <td>张三</td>
+                    <td>20</td>
+                    <td>男</td>
+                    <td>03班</td>
+                    <td>20141824135</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>张三</td>
+                    <td>20</td>
+                    <td>男</td>
+                    <td>03班</td>
+                    <td>20141824135</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>张三</td>
+                    <td>20</td>
+                    <td>男</td>
+                    <td>03班</td>
+                    <td>20141824135</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>张三</td>
+                    <td>20</td>
+                    <td>男</td>
+                    <td>03班</td>
+                    <td>20141824135</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>张三</td>
+                    <td>20</td>
+                    <td>男</td>
+                    <td>03班</td>
+                    <td>20141824135</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>张三</td>
+                    <td>20</td>
+                    <td>男</td>
+                    <td>03班</td>
+                    <td>20141824135</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>张三</td>
+                    <td>20</td>
+                    <td>男</td>
+                    <td>03班</td>
+                    <td>20141824135</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>张三</td>
+                    <td>20</td>
+                    <td>男</td>
+                    <td>03班</td>
+                    <td>20141824135</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>张三</td>
+                    <td>20</td>
+                    <td>男</td>
+                    <td>03班</td>
+                    <td>20141824135</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>张三</td>
+                    <td>20</td>
+                    <td>男</td>
+                    <td>03班</td>
+                    <td>20141824135</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p>table设置height无效，table的高度是由它的内容来决定的！所以在table 外面讨论一层div来overflow:hidden 多余的部分</p>
+    <p>给tbody没有设置了position：absolute；之前，tbody的宽度会填满table的width。</p>
+    <p>给tbody设置了position：absolute；tbody的宽度就会变成本身的内容宽度。需要给td设置width，对齐表头</p>
+    <p>同时要给thead设置position:absolute；使其浮起来，给tbody设置z-index：-1；</p>
+</body>
+<script src="main.js"></script>
+
+</html>

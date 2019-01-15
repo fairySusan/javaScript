@@ -1,0 +1,26 @@
+div{
+    height: 224px;
+    overflow: hidden;
+    position: relative;
+}
+table{
+ width: 400px;
+ height: 200px;
+ border-collapse: collapse;
+}
+td{
+    border: 1px solid #ff4455;
+    padding: 4px 6px;
+    background: #aeaeae;
+    text-align: center;
+    height: 25px;
+    width: 40px;
+}
+thead{
+    position: absolute;
+}
+tbody{
+    position: absolute;
+    z-index: -1;
+    top: 0;
+}
