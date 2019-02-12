@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>获取数组中最大最小的值</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    
+</body>
+<script>
+    /* 使用call或apply调用Math.max()或Math.min() */
+    var arr = [12,34,56,22,44,6,2];
+    // ES6之前的用法
+    var maxValue1 = Math.max.apply(this, arr);
+    // ES6有了扩展运算符后的用法
+    var maxValue2 = Math.max(...arr);
+</script>
+</html>
