@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>new运算符原理的实现</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <p>
+        var cat = new Animal();
+        new运算符做了以下几件事情：
+        1.创建一个继承自Animal.prototype的对象
+        2.执行Animal这个构造函数，并且把Animal函数里的this指向1步骤中的新对象
+        3.如果Animal函数返回了一个“对象”,那么这个对象会取代步骤1中对象被返回。如果Animal函数没有返回对象,那么new出来的结果为步骤1创建的对象。
+    </p>
+</body>
+<script>
+    function NewM(Animal) {
+        let newObj = Object.create(Animal.prototype); // 第一步创建指向Animal.prototype的对象
+        let cat = Animal.call(newObj); // 调用Animal,并将this指向newObj
+        if (typeof cat === 'object') {
+            return cat; // 如果Animal函数返回了对象
+        }else{
+            return newObj; // 如果Animal函数没有返回对象
+        }
+    }
+</script>
+</html>
