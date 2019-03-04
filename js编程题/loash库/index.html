@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>loash库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+</body>
+<script src="main.js"></script>
+<script>
+   console.log(_([1,2,3,3,3,'a','A']).uniq((item) => {
+    return typeof item == 'string' ? item.toLocaleLowerCase() : item;
+   }));
+</script>
+</html>
