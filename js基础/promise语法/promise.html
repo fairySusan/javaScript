@@ -38,7 +38,7 @@
 	*/
 	var ptest = new Promise(resolve=>{
 		console.log(1);
-		resolve(3);
+		resolve(3); // resolve() 异步
 	});
 	ptest.then(res=>{
 		console.log(res);
