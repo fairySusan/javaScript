@@ -1,4 +1,5 @@
 # webpack学习文档
+webpack打包的entry就是所以资源，依赖的起点。比如vue项目的main.js,所有的插件，css，图片，路由都是在main.js中引入。mian.js再打包，到dist文件夹下的bundle.js。
 ### 首先在项目中安装webpack、webpack-cli
 npm install –save-dev webpack
 npm install –save-dev webpack-cli
@@ -52,7 +53,7 @@ module.exports = {
 ### 管理输出
 ![管理输出图1](./output.png)
 
-入口可以不止一个，这样输出的js文件也不止一个。Index.html里script引入打包后的js文件，这里需要手动引入。如果入口名字变了，打包后的js名字也会变，index.html里又要手动更改引入。所以HtmlWebpackPlugin插件诞生。
+入口可以不止一个，这样输出的js文件也不止一个。Index.html里script引入打包后的js文件，这里需要手动引入。如果入口名字变了，打包后的js名字也会变，index.html里又要手动更改引入。所以HtmlWebpackPlugin插件诞生。这个插件可以在dist文件夹下生成一个html文件，这个文件会自动引入bundle.js
 
 ![管理输出图2](./img02.png)
 
