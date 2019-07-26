@@ -12,7 +12,7 @@
         <input type="text" id="login-name" name="loginName">
         <label for="password">密码：</label>
         <input type="password" id="password" name="password">
-        <button type="submit">提交</button>
+        <button type="button" id="submit">提交</button>
         <button type="reset">重置</button>
     </form>
     <div>
@@ -20,4 +20,17 @@
     </div>
 </body>
 <script src="/main.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+<script>
+const subbtn = document.getElementById('submit');
+subbtn.addEventListener('click', () => {
+    const params = {
+        name: document.getElementById('login-name').value,
+        password: document.getElementById('password').value,
+    }
+    $.post('/login',params, function(res) {
+        console.log(params);
+    })
+})
+</script>
 </html>

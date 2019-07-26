@@ -1,5 +1,5 @@
 # webpack学习文档
-webpack打包的entry就是所以资源，依赖的起点。比如vue项目的main.js,所有的插件，css，图片，路由都是在main.js中引入。mian.js再打包，到dist文件夹下的bundle.js。
+webpack打包的entry就是所有资源，依赖的起点。比如vue项目的main.js,所有的插件，css，图片，路由都是在main.js中引入。mian.js再打包，到dist文件夹下的bundle.js。
 ### 首先在项目中安装webpack、webpack-cli
 npm install –save-dev webpack
 npm install –save-dev webpack-cli

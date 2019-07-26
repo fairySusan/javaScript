@@ -12,10 +12,16 @@
 <script>
     var arr = [1,2,3,4];
     arr.forEach(item => {
-        setInterval(() => {
+        setTimeout(() => {
             console.log(item);
         }, 3000);
     });
     // 为什么3s同时打印1,2,3,4？ 因为for循环了出了4个timer，每个timer分别打印1,2,3,4;
+    for (var i=0; i < arr.length-1; i++) {
+        setTimeout(() => {
+            console.log('xxx',arr[i], i);
+        }, 3000)
+    }
+    // 打印3次相同的结果，因为i是var声明的，没有块级作用域，等到setTimeout执行的时候，i的值已经等于3了
 </script>
 </html>
