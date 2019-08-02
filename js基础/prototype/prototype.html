@@ -25,6 +25,7 @@
 	}
 	window.onload = function() {
 		console.log("a.prototype",a.prototype);//a.prototype里只有sex属性，没有name和age属性, name和age是直接定义在实例上面的
+		console.log("b", b); // sex== "boy" selName =="lijiankuo" walk  这些都是b自己身上的。也就是说b只能读取a.prototype的属性，不能修改
 		console.log("b.__proto__",b.__proto__);
 		console.log("a.prototype.__proto__");
 		console.dir(a.prototype.__proto__);//指向Object.prototype
