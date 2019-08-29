@@ -5,15 +5,58 @@
 </head>
 <body>
 	<h1>Generator函数可以通过yield和next()来进行暂停和继续执行，这是它能封装异步任务的根本原因。</h1>
+	<h1>一个yield对应一个next</h1>
+	<h1>yield是一个表达式它是有值的，或者undefined</h1>
+	<h2>
+		而asycn和await是generator函数的语法糖
+	</h2>
+	<h2>
+		await相当于yield,函数执行到await关键字时，就暂停往下执行，等到异步的结果返回在继续执行
+		如果要检测异步执行是否错误，把await执行语句放到try catch里
+	</h2>
 </body>
 <script type="text/javascript">
 	function* getApple(m){
 		var price = yield 3*m;
+		yield "world";
 		console.log("苹果的价格：",price);
+		return "beatiful";
 	}
 	var a = getApple(10);
-	a.next();
+	a.next(10); // 函数开始执行，直到遇到第一个yield，执行第一个yield表达式，然后停止，返回一个对象{value: 30, done: false }
 	console.log("执行");
-	a.next(30);
+	a.next(); // {value: "world", done: fales} 暂停
+
+	a.next(30); // {value: "beatiful", done: true} // 执行到return或者函数结束， 如果没有return，value的值为undefined
+</script>
+<script>
+	async function getApple() {
+		const color = await new Promise((resolve, reject) => {
+			resolve('red');
+		});
+		console.log('等待上面异步操作返回结果后继续执行' + color);
+		const size = await new Promise((resolve, reject) => {
+			resolve('big');
+		})
+		console.log('等待上面异步操作返回结果后继续执行' + size);
+	}
+	async function getNewApple() {
+		try {
+			const color = await new Promise((resolve, reject) => {
+			  resolve('red');
+      });
+      console.log('等待上面异步操作返回结果后继续执行' + color);
+		} catch {
+      console.error('错误')
+    }
+    try {
+      const size = await new Promise((resolve, reject) => {
+        resolve('big');
+      })
+      console.log('等待上面异步操作返回结果后继续执行' + size);
+    } catch {
+      console.error('错误')
+    }
+	}
 </script>
 </html>
