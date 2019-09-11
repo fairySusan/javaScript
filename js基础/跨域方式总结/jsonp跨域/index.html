@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>jsonp跨域</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+  <button id="btn">跨域请求</button>
+  <p>jsonp跨域其实需要后端支持，前端通过script标签发起请求并附带一个callback的名字，后端将返回结果作为参数放入callback中，如callback(res) </p>
+  <p>然后将callback(res)以字符串形式返回给前端，前端拿到callback(res),相当于js代码调用了callback这个函数，并传入了res参数。</p>
+</body>
+<script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.min.js"></script>
+<script>
+  function handleResponse(res) {
+    console.log(res);
+  }
+</script>
+<script>
+  window.onload = function() {
+    // axios.get('http://localhost:8081/getData').then(res => {
+    //   console.log(res);
+    // })
+  var btn = document.getElementById('btn');
+  btn.onclick = function() {
+    let jsElm = document.createElement('script');
+    jsElm.src = 'http://localhost:8081';
+    document.body.insertBefore(jsElm, document.body.firstChild);
+  } 
+}
+</script>
+</html>
