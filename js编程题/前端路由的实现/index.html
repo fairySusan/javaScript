@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>路由的实现</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <ul>
+    <!-- 加#号是为了在当前页面添加锚点，不跳转其他网页 -->
+    <li><a href="#/">home</a></li>
+    <li><a href="#/home">home</a></li>
+    <li><a href="#/about">about</a></li>
+  </ul>
+  <div id="app"></div>
+</body>
+<script type="text/javascript" src="./router.js"></script>
+<script type="text/javascript">
+  var root = document.querySelector('#app');
+  Router.route('/', function() {
+    let home = document.createElement('div');
+    let text = document.createTextNode('这是home');
+    home.appendChild(text);
+    if (root.childNodes[0]) {
+      root.removeChild(root.childNodes[0]);
+    }
+    root.appendChild(home);
+  });
+  Router.route('/home', function() {
+    let home = document.createElement('div');
+    let text = document.createTextNode('这是home');
+    home.appendChild(text);
+    if (root.childNodes[0]) {
+      root.removeChild(root.childNodes[0]);
+    }
+    root.appendChild(home);
+  });
+  Router.route('/about', function() {
+    let about = document.createElement('div');
+    let text = document.createTextNode('这是about');
+    about.appendChild(text);
+    if (root.childNodes[0]) {
+      root.removeChild(root.childNodes[0]);
+    }
+    root.appendChild(about);
+  });
+</script>
+</html>

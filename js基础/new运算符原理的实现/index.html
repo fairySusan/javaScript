@@ -17,13 +17,19 @@
 </body>
 <script>
     function NewM(Animal) {
-        let newObj = Object.create(Animal.prototype); // 第一步创建指向Animal.prototype的对象
-        let cat = Animal.call(newObj); // 调用Animal,并将this指向newObj
+        let newObj = Object.create(Animal.prototype); // 第一步创建指向Animal.prototype的对象 这一步是让实力对象继承Animal的原型里的属性
+        let cat = Animal.call(newObj); // 调用Animal,并将this指向newObj, 这一步是让实例对象获得实例属性，就是this.xxx定义的哪些人属性
         if (typeof cat === 'object') {
             return cat; // 如果Animal函数返回了对象
         }else{
             return newObj; // 如果Animal函数没有返回对象
         }
     }
+    function Animal() {
+        this.name = '下滑动';
+        this.color = 'yellow';
+    }
+    var dog = new Animal();
+    console.log(dog);
 </script>
 </html>
