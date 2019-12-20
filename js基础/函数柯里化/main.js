@@ -20,7 +20,8 @@ newAdd(4); // 传参数b
 newAdd(5); // 传参数b
 console.log(res);
 
-// 高级实现方式
+// 高级实现方式， 递归，闭包保存参数
+//“用闭包把参数保存起来，当参数的数量足够执行函数了，就开始执行函数”
 
 function curry2(fn, args) {
   var length = fn.length; // 获取fn的参数的个数
