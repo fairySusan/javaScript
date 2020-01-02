@@ -11,7 +11,8 @@
 <h3>.then(f1,f2)方法可以接受两个参数，第一个参数是状态转为成功时调用，第二个方法是状态转为失败时调用，第二个参数是可选的不一定提供</h3>
 <h2>Promise.prototype.catch</h2>
 <h3>.catch(f),是发生错误时，回调f函数，写法是.then().catch()</h3>
-<h3>then()的回调函数是异步执行的，也就是说这个回调函数是插入到了事件队列的末尾。</h3>
+<h3 style="color: red">then()的回调函数是异步执行的，也就是说这个回调函数是插入到了事件队列的末尾。</h3>
+<h3 style="color: red">异步的目的是为来解决那些返回结果时间很长，导致cpu空闲的问题</h3>
 </body>
 <script type="text/javascript">
 	var p = new Promise(function(resolve,reject){//resolve和reject是两个回调函数
@@ -34,15 +35,44 @@
 		//发生错误后执行的代码
 	}
 	/*
-		以下代码的输出顺序123
+	以下代码的输出顺序acb
 	*/
-	var ptest = new Promise(resolve=>{
-		console.log(1);
-		resolve(3); // resolve() 异步
-	});
-	ptest.then(res=>{
-		console.log(res);
-	})
-	console.log(2);
+	// var ptest1 = new Promise(resolve=>{
+	// 	console.log('a');
+	// 	resolve('b'); // resolve() 异步
+	// });
+	// ptest1.then(res=>{
+	// 	console.log(res);
+	// })
+	// console.log('c');
+	/*
+		以下代码的输出顺序213
+	*/
+	// var ptest2 = new Promise(resolve=>{
+	// 	setTimeout(() => {
+	// 		console.log(1);
+	// 		resolve(3); // resolve() 异步
+	// 	}, 0)
+	// });
+	// ptest2.then(res=>{
+	// 	console.log(res);
+	// })
+	// console.log(2);
+
+	/*
+	一个函数体里调用一个需要很长时间的函数，并且这个函数跟后面执行的代码并无关系， 那么需要将此函数做成异步执行
+	*/
+	function fn1() {
+		console.log('xascdsa');
+	}
+
+	function fn2() {
+		const p = new Promise((resolve, reject) => {
+			resolve();
+		});
+		p.then(() => { fn1(); });
+		console.log('我要先执行');
+	}
+	fn2();
 </script>
 </html>
