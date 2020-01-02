@@ -17,12 +17,13 @@
 	<h1>2.事件监听</h1>
 	<h1>3.发布订阅</h1>
 	<h1>4.promise对象</h1>
+	<h1>5.async和await</h1>
 </body>
 <script type="text/javascript">
 	// 1.回调函数
 	function f1(f){
 		setTimeout(function(){
-			f2();
+			f();
 		},1000);//
 		f3();
 	}
@@ -33,5 +34,12 @@
 		console.log("run f3");
 	}
 	f1(f2);
+	// async和await， 用async和await来解决axios请求
+	async function getList() {
+		let res = await axios.get('/getList'); // await 后面接一个promise对象，返回promise对象的结果
+		return res;
+	}
+	getList().then(res => console.log(res));
+
 </script>
 </html>
