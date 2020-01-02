@@ -13,6 +13,7 @@
 <h3>.catch(f),是发生错误时，回调f函数，写法是.then().catch()</h3>
 <h3 style="color: red">then()的回调函数是异步执行的，也就是说这个回调函数是插入到了事件队列的末尾。</h3>
 <h3 style="color: red">异步的目的是为来解决那些返回结果时间很长，导致cpu空闲的问题</h3>
+<h3 style="color: red">放入异步队列里的是回调函数，比如setTimeout的回调函数、axios的回调函数，是回调函数延后执行</h3>
 </body>
 <script type="text/javascript">
 	var p = new Promise(function(resolve,reject){//resolve和reject是两个回调函数
