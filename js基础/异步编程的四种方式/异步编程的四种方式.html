@@ -34,12 +34,5 @@
 		console.log("run f3");
 	}
 	f1(f2);
-	// async和await， 用async和await来解决axios请求
-	async function getList() {
-		let res = await axios.get('/getList'); // await 后面接一个promise对象，返回promise对象的结果
-		return res;
-	}
-	getList().then(res => console.log(res));
-
 </script>
 </html>
