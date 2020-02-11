@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>获取最近30天的日期列表</title>
+</head>
+<body>
+  
+</body>
+<script>
+  function getDays(num) {
+    let days = [];
+    for(var i = 0;i<num;i++){
+      let str = new Date(new Date()
+      .setDate(new Date().getDate()-i))
+      .toLocaleDateString();
+      let arr = str.split('/');
+      let newStr = arr[1] +'/' + arr[2];
+      days.unshift(newStr);
+    }
+    return days;
+  }
+</script>
+</html>
