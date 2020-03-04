@@ -5,7 +5,7 @@
 </head>
 <body>
 	<h1>for in里的i是对象，for in可以用来遍历数组和对象</h1>
-	<h2>for in 遍历数组的时候i为下标，遍历对象的时候i为键名</h2>
+	<h2>for in 遍历数组的时候i为下标，遍历对象的时候i为键名, i都是string类型</h2>
 	<h1>for of里的i是数组里的元素，并且for of不可以用来遍历对象, 因为对象里面没有迭代器，只有Symbol.iterator属性的数据结构
 		才能使用for of遍历
 	</h1>
@@ -23,7 +23,7 @@
 		console.log(i);//打印出来是name age eat
 	}
 	for(let m in arr){
-		console.log(m);
+		console.log(m); // 0，1，2，3， 是字符串类型
 	}
 	for(var i of arr){
 		console.log(i);//i:1 6 3 8
