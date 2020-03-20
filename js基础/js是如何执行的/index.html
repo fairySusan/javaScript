@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+  <script src="main.js"></script>
+</head>
+<body>
+  <p>
+    开始运行你的代码的时候，js引擎会创建一个“全局执行上下文”,初始化这个执行上下文会干三件事：
+    1.生成一个全局对象window，或者global（node执行的时候） 2.初始化this， this指向window，或者global（node执行的时候）
+    3. 将全局变量 都初始化为undefined,name:undefined, handle:undefined 函数都声明，但是函数没有函数体，getUser: fn()。这个时候还没有开始执行一行代码。
+    接着是执行上下文：一行代码一行代码的执行。 给变量赋值，name: "susan" handle:"@tylermcginnis"  但是函数还是getUser: fn()。
+  </p>
+  <p>
+
+  </p>
+  参考下面那篇文章
+  <a href="https://tylermcginnis.com/ultimate-guide-to-execution-contexts-hoisting-scopes-and-closures-in-javascript/?spm=ata.13261165.0.0.2d8e16798YR8lw"></a>
+</body>
+<script>
+  var name = 'susan';
+  var handle = '@tylermcginnis';
+
+  function getUser() {
+    return {
+      name: name,
+      handle: handle
+    }
+  }
+</script>
+</html>

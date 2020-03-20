@@ -21,5 +21,5 @@ const axios = {
 axios.get('/getData').then((res) => {
     console.log(res);
 }, (statusText) => {
-    console.log(statusText);
+    console.log("出错了", statusText);
 })
