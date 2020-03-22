@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div id="app">
+    <todo-list>
+      <template #header>
+        <span>来吧盆友</span>
+      </template>
+      <template #footer>
+        <i>不来</i>
+      </template>
+    </todo-list>
+    <keep-alive>
+      <component :is="currentTabComponent"></component>
+    </keep-alive>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="main.js"></script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div id="app"></div>
+</body>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/babel">
+
+function SplitPane(props) {
+  return (
+    <div>
+      <div className="SplitPane-left">
+       {props.left}
+      </div>
+      <div className="SplitPane-right">
+       {props.right}
+      </div>
+    </div>
+  )
+}
+function App() {
+  return (
+    <SplitPane left={() => (<h1>猫🐱</h1>)} right={() => (<h1>狗🐶</h1>)}></SplitPane>
+  )
+}
+// render props 是直接传递下去一个函数， 这个函数根据判断条件来决定渲染什么组件， 和组件组合还不同， 组件组合是直接传递一个组件下去在某个位置渲染
+// 状态提升 可以解决兄弟组件之间的通信， 将通信的state提升到父组件来，父组件往下传递一个修改state的函数，这样state就提升到来两个组件共有的父组件上来了。
+var app = document.querySelector('#app');
+ReactDOM.render(<App></App>, app);
+</script>
+<script type="text/babel" src="main.js"></script>
+</html>
