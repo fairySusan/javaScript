@@ -12,3 +12,4 @@ Object.defineProperty(book, 'year' , { //year是访问器属性
  book.year = 2016;
 
  console.log(book.year); //2016
+ console.log(Object.getOwnPropertyDescriptor(book, 'year'));

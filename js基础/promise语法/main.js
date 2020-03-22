@@ -1,78 +1,69 @@
-function Promise(fn){ 
-  let state = 'pending';
-  let value = null;
-  const callbacks = [];
-
-  this.then = function (onFulfilled,onRejected){
-      return new Promise((resolve, reject)=>{
-          handle({
-              onFulfilled, 
-              onRejected,
-              resolve, 
-              reject
-          })
-      })
-  }
-
-  function handle(callback){
-      if(state === 'pending'){
-          callbacks.push(callback)
-          return;
-      }
-      
-      const cb = state === 'fulfilled' ? callback.onFulfilled:callback.onRejected;
-      const next = state === 'fulfilled'? callback.resolve:callback.reject;
-
-      if(!cb){
-          next(value)
-          return;
-      }
-      const ret = cb(value)
-      next(ret)
-  }
-  function resolve(newValue){
-      const fn = ()=>{
-          if(state !== 'pending')return
-
-          if(newValue && (typeof newValue === 'object' || typeof newValue === 'function')){
-              const {then} = newValue
-              if(typeof then === 'function'){
-                  // newValue 为新产生的 Promise,此时resolve为上个 promise 的resolve
-                  //相当于调用了新产生 Promise 的then方法，注入了上个 promise 的resolve 为其回调
-                  then.call(newValue,resolve, reject)
-                  return
-              }
-          }
-          state = 'fulfilled';
-          value = newValue
-          handelCb()
-      }
-      
-      setTimeout(fn,0)
-  }
-  function reject(error){
-
-      const fn = ()=>{
-          if(state !== 'pending')return
-
-          if(error && (typeof error === 'object' || typeof error === 'function')){
-              const {then} = error
-              if(typeof then === 'function'){
-                  then.call(error,resolve, reject)
-                  return
-              }
-          }
-          state = 'rejected';
-          value = error
-          handelCb()
-      }
-      setTimeout(fn,0)
-  }
-  function handelCb(){
-      while(callbacks.length) {
-          const fn = callbacks.shift();
-          handle(fn);
-      };
-  }
-  fn(resolve, reject)
+class GPromise {
+    constructor(executor) {
+        this._promiseStatus = GPromise.PENDING;
+        this._promiseValue;
+        this.execute(executor);
+    }
+    execute(executor) {
+        if(typeof executor !== 'function' ) {
+            throw new Error('GPromise resolver ${executor} is not a function')
+        }
+        try {
+            executor(this.resolve, this.reject);
+        } catch(e) {
+            this._promiseStatus = GPromise.REJECTED;
+            this._promiseValue = e;
+        }
+    }
+    then(onfulfilled, onrejected) {
+        return setTimeout(this.asyncCallBack(onfulfilled, onrejected), 0);
+    }
+    asyncCallBack(onfulfilled, onrejected) {
+        let returnValue;
+        // then函数会返回一个promise实例，并且会resolve(回调函数的返回值也就是returnValue)，作为下一个then函数回调函数的参数
+        let returnPromise = new GPromise(() => {}); 
+        if (typeof onfulfilled === 'function' && 
+            typeof onrejected === 'function' && 
+            this._promiseStatus !== GPromise.PENDING){
+            try {
+                if (this._promiseStatus === GPromise.FULFILLED) {
+                    this.returnValue = onfulfilled(this._promiseValue);
+                }
+                if (this._promiseStatus === GPromise.REJECTED) {
+                    this.returnValue = onrejected(this._promiseValue);
+                }
+                //1.then回调函数返回一个promise对象， 根据then函数的回调函数的返回值确定返回的 promise的状态
+                if (returnValue instanceof GPromise) {
+                    setTimeout(() => {
+                        if (this.returnValue._promiseStatus !== GPromise.PENDING) {
+                            returnPromise._promiseStatus = returnValue._promiseStatus;
+                            returnPromise._promiseValue = returnValue._promiseValue;
+                        }
+                    }, 0)
+                } else {  // 2. then回调函数返回的不是promise对象,是一个值
+                    returnPromise._promiseValue = returnValue;
+                    returnPromise._promiseStatus = GPromise.FULFILLED;
+                }
+                
+            }catch(e) {
+                // 回调函数中抛出错误的情况
+                returnPromise._promiseStatus = GPromise.REJECTED;
+                returnPromise._promiseValue = e;
+            }
+        }
+        return returnPromise;
+    }
+    resolve(data) {
+        if (this._promiseStatus !== GPromise.PENDING) return;
+        this._promiseStatus = GPromise.FULFILLED;
+        this._promiseValue = data;
+    }
+    reject() {
+        if(this._promiseStatus !== GPromise.PENDING) return;
+        this._promiseStatus = GPromise.REJECTED;
+        this._promiseValue = data;
+    }
 }
+GPromise.PENDING = 'pending';
+GPromise.FULFILLED = 'fulfilled';
+GPromise.REJECTED = 'rejected';
