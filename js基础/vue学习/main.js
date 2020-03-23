@@ -9,7 +9,7 @@ var ComponentB = {
 }
 
 var ComponentC = {
-  functional: true, // 函数式组件， 对于无状态(没有响应式数据)，也没有实例（没有this上下文）的组件可以写成函数式组件，好处是渲染开销低很多
+  functional: true, // 函数式组件， 对于无状态(没有响应式数据)，也没有生命周期，也没有实例（没有this上下文）的组件可以写成函数式组件，好处是渲染开销低很多
   props: {},
   render: function (createElement, context) {
 
