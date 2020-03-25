@@ -35,5 +35,17 @@
 	}
 	getWords();
 	maxWords();
+	// 判断数组中每个元素出现的次数
+	var names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice'];
+	function countedNames(names) {
+		let result = names.reduce((allNames, name) => {
+			if (name in allNames) {
+				allNames[name]++;
+			} else {
+				allNames[name] = 1;
+			}
+		});
+		return result;
+	}
 </script>
 </html>
