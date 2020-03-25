@@ -1,5 +1,4 @@
-Function.prototype.call2 = function(context) {
-  // 首先获取调用call的函数，用this可以获取
+Function.prototype.apply2 = function(context) {
   var args = [];
   args = arguments[1]; // 第二个参数是数组
   context.fn = this; 
@@ -15,10 +14,10 @@ var foo = {
 function fn(name, age) {
   console.log(this.value, name, age);
 }
-fn.call2(foo, ['susan', 18]); //1
+fn.apply2(foo, ['susan', 18]); //1
 
-// call3...........
-Function.prototype.call3 = function(context) {
+// apply3...........
+Function.prototype.apply3 = function(context) {
   var args = [];
   args = arguments[1]; // 第二个参数是数组
   var context = context || window;
@@ -38,10 +37,10 @@ function bar(name, age) {
 }
 
 // 测试
-bar.call3(foo1, [JSON.stringify('kelala'), 20]); // 'bar' 111 'kelala', 20
+bar.apply3(foo1, [JSON.stringify('kelala'), 20]); // 'bar' 111 'kelala', 20
 
 // apply 的实现
-Function.prototype.apply2 = function(context) {
+Function.prototype.call2 = function(context) {
   let args = [];
   for(let i = 1; i<arguments.length; i++) {
     args.push(arguments[i]);
@@ -57,18 +56,19 @@ var foo2 = {
 function apple(shape, color){
   console.log('apple is', shape, color, this.value);
 }
-apple.apply2(foo2, 'big', 'red');// apple is big red 190
+apple.call2(foo2, 'big', 'red');// apple is big red 190
 
 // bind 函数的实现
 Function.prototype.bind2 = function(context) {
   let fn = this;
+  let args = arguments;
   // 改变fn里的this指向
   return function() { 
-    let args = [];
-    for(let i = 0; i<arguments.length; i++) {
-      args.push(arguments[i]);
+    let argsArr = [];
+    for(let i = 0; i<args.length; i++) {
+      argsArr.push(args[i]);
     }
-    return fn.call(context, args);
+    return fn.apply(context, argsArr);
   }
 }
 // 测试
@@ -78,5 +78,5 @@ var foo3 = {
 function cherry(shape, color) {
   console.log('cherry', shape, color, this.value);
 }
-newCherry = cherry.bind2(foo3); //  此时 cherry已经被执行，返回了结果，调用newCherry 获得返回的结果
-newCherry('little', 'pink');
+newCherry = cherry.bind2(foo3, 'little', 'pink'); //  此时 cherry已经被执行，返回了结果，调用newCherry 获得返回的结果
+newCherry();
