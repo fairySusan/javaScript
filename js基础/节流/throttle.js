@@ -4,70 +4,39 @@ function getUserAction(e) {
   console.log(e); // 当函数被当做事件处理函数时，函数里的这个指向触发事件的DOM对象，这里指向一个div对象。
   contatiner.innerHTML = count++;
 }
-// 第一版 会立即执行， 但不会执行最后一次事件
+// 第一版 不在wait时间范围内点击的事件会立即执行
 function throttle(func, wait) {
-  var context, args;
   var previous = 0;
-
-  return function() {
+  return function(...args) {
       var now = +new Date();
-      context = this;
-      args = arguments;
       if (now - previous > wait) {
-        func.apply(context, args);
+        func.call(this, args);
         previous = now;
       }
   }
 }
-
-// 第二版 不会立即执行，但是会执行最后一次事件
+//第二版 不在wait时间范围内点击的事件会延迟wait秒执行 
 function throttle2(func, wait) {
-  var timeout;
-  return function() {
-    context = this;
-    args = arguments;
-    if (!timeout) {
-      timeout = setTimeout(function(){
-        timeout = null;
-        func.apply(context, args)
+  var flag = false; // 是否还在wait这个时间间隔内
+  return function(...args) {
+    if (!flag) { // 如果不是在wait这个时间范围内发生的点击事件，就延后wait执行，如果是在wait时间范围内发生的点击事件，就不执行。
+      flag = true;
+      timeout = setTimeout(() => {
+        flag = false;
+        func.call(this, args)
       }, wait)
     }
   }
 }
 contatiner.onmousemove = throttle(getUserAction, 1000);
 
-// 那我们设置个 options 作为第三个参数，然后根据传的值判断到底哪种效果
-// leading：false 表示禁用第一次执行
-// trailing: false 表示禁用停止触发的回调
-function throttle(func, wait, options) {
-  var timeout, context, args;
-  var previous = 0;
-  if (!options) options = {};
-
-  var later = function() {
-    previous = options.leading ? 0 : new Date().getTime();
-    timeout = null;
-    func.apply(context, args);
-    if (!timeout) context = args = null;
-  }
-  var throttled = function() {
-    var now = new Date().getTime();;
-    if (!previous && options.leading) previous = now;
-    var remaining = wait - (now - previous);
-    context = this;
-    args = arguments;
-    // 在距离上次触发事件已经过了wait时间，就可以再次触发，否则跳else
-    if (remaining <= 0 || remaining > wait) {
-      if (timeout) {
-        clearTimeout(timeout);
-        timeout = null;
-      }
-      previous = now;
-      func.apply(context, args);
-      if (!timeout) context = args = null;
-    } else if (!timeout && options.trailing !== false) {
-      timeout = setTimeout(later, remaining);
-    }
-  }
-  return throttled;
-}
+/**
+ *总结：
+ *函数防抖：将几次操作合并为一此操作进行。原理是维护一个计时器，
+ *规定在delay时间后触发函数，但是在delay时间内再次触发的话，
+ *就会取消之前的计时器而重新设置。这样一来，只有最后一次操作能被触发。
+ *函数节流：使得一定时间内只触发一次函数。原理是通过判断是否到达一定时间来触发函数。
+ *区别： 函数节流不管事件触发有多频繁，都会保证在规定时间内一定会执行一次真正的事件处理函数，
+ *而函数防抖只是在最后一次事件后才触发一次函数。 比如在页面的无限加载场景下，
+ *我们需要用户在滚动页面时，每隔一段时间发一次 Ajax 请求，而不是在用户停下滚动页面操作时才去请求数据。这样的场景，就适合用节流技术来实现。
+ */
