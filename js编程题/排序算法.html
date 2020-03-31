@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>排序算法</title>
+</head>
+<body>
+	<div>
+		<h1>冒泡排序</h1>
+		<p>
+			比较第一个与第二个记录， 
+			若关键字为逆序则交换；然后比 
+			较第二个与第三个记录；依次类 
+			推，直至第 n-1 个和第 n 个记录 
+			比较为止——第一趟冒泡排序， 
+			结果关键字最大的记录被安置在 
+			最后一个记录上。 
+		</p>
+		<p>
+			时间复杂度：最好的情况：O(n), 最坏的情况：O(n的平方)
+		</p>
+	</div>
+	<div>
+	 <h1>快速排序</h1>
+	 <p>
+
+	 </p>
+	</div>
+</body>
+<script type="text/javascript">
+	var a = [10,5,2,80,35,100];
+	// 1.冒泡排序
+	var bubbleSort = function(arr){
+		var flag = true;
+		var len = arr.length;
+		for(var i=0;i<len-1;i++){
+			for(var j=0;j<len-1-i;j++){
+				if(arr[j]>arr[j+1]){//升序排序
+					var temp = arr[j+1];
+					arr[j+1] = arr[j];
+					a[j] = temp;
+					flag = false;
+				}
+			}
+			if (flag) {
+				break;
+			}
+		}
+	}
+	bubbleSort(a);
+	// 2.快速排序
+	var quickSort = function(arr) {
+		// 检查元素的个数，小于等于1的返回
+		if(arr.length <= 1) {return arr;}
+		// 接着选择“基准”，并将其与原数组分离，在定义两个空数组，用来存放一左一右的两个子集
+		var pivoteIndex = Math.floor(arr.length / 2);
+		var pivot = arr.splice(pivoteIndex, 1)[0]; // 将基准元素从原数组中删除， 并获取基准元素
+		var left = [];
+		var right = [];
+		// 然后开始遍历数组，小于‘基准的’元素，放入左边的子集，大于基准的元素放入右边的子集
+		for (let i = 0; i<arr.length; i++) {
+			if (arr[i] < pivot) {
+				left.push(arr[i]);
+			} else {
+				right.push(arr[i]);
+			}
+		}
+		// 最后用递归不断重复这个过程,直到left，right只剩一个元素就在第一步return，就可以得到排序后的数组
+		return quickSort(left).concat([pivot], quickSort(right));
+	}
+</script>
+</html>

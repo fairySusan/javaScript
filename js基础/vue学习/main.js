@@ -48,9 +48,10 @@ Vue.component('todo-item', {
 Vue.component('cat', {
   template: '<h1>我是一只猫</h1>'
 })
-Vue.component('dog', {
+let cont = Vue.component('dog', {
   template: '<h1>我是一只狗</h1>'
 })
+console.log('构造器', cont);
 var app = new Vue({
   el: '#app',
   data: {
