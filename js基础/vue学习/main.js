@@ -57,3 +57,23 @@ var app = new Vue({
     currentTabComponent: 'dog' //  is 动态组件 <keep-alive></keep-alive> 缓存动态组件
   }
 })
+
+// 这就是为什么data必须是函数的原因
+function Aniamal(options) {
+  this.$init(options);
+}
+Aniamal.prototype.$init = function(options) {
+  let vm = this;
+  vm.$options = options;
+}
+var options = {
+  data: function() {
+    return {
+      animalName: 'fish'
+    }
+  }
+}
+var fish = new Aniamal(options);
+var bird = new Aniamal(options);
+bird.$options.data().animalName = 'bird';
+console.log(fish.$options.data().animalName);
