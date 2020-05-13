@@ -185,3 +185,32 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+12、导航的生命周期
+
+A组件导航到B组件，会调用B组件的componentDitMount
+
+当push(B)的时候，也会调用B的componentDitMount，但是不会调用A的componentWillUnMount，A依然存在在栈中。接着又从B回到A，
+A的componentDitMount不会被调用。所以这种情况无法监听到A的导航。
+用navigation.addListener('focus',()=>{});  navigation.addListener('blur', () => {}); 来监听
+
+13、关于头部的options
+headerShown：true/false
+headerTitle
+headerTitleAlign: left/center
+headerBackImage
+headerBackTitle
+headerStyle
+headerTitleStyle
+headerBackTitleStyle
+headerBackTitleVisible true/false
+
+14、关于用户数据存储
+https://www.jianshu.com/p/72c3d3af094f
+
+15、表单验证插件
+react-native-form-validator
+https://www.npmjs.com/package/react-native-form-validator
+
+16、手势密码组件
+https://www.npmjs.com/package/react-native-gesture-password
