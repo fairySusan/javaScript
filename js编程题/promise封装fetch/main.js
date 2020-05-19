@@ -61,7 +61,7 @@ const get = function(url, params = {}, config = initConfig) {
 };
 
 const post = function(url, params = {}, config = initConfig) {
-  const specifyConfig = { method: 'POST', signal: signal, body: JSON.stringify(params) };
+  const specifyConfig = { method: 'POST', signal: signal, body: params };
   const newConfig = {...config, ...specifyConfig};
 
   return Promise.race([fetch(url, newConfig), timeoutPromise(timeout)])
@@ -154,7 +154,9 @@ const getListData = () => {
   return get(`/getlist?timer=${new Date().getTime()}`, {filter: 'red'});
 };
 const postSearchData = (params) => {
-  return post('/postData', params)
+  return post('/postData', params, {
+    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+  })
 }
 
 getListData().then(res => {
@@ -168,7 +170,7 @@ const par = {
   size: 'big',
   isBlack: true,
 }
-postSearchData(par).then(res => {
+postSearchData('color=red&size=big').then(res => {
   console.log('postres', res);
 }).catch(error => {
   console.log('posterror', error.message);

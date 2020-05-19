@@ -27,7 +27,8 @@ app.get('/getList', (req, res) => {
   }
 });
 
-app.post('/postData', jsonParser, (req, res) => {
+app.post('/postData', urlencodedParser, (req, res) => {
+  console.log(req.body);
   if(req.body.color === 'red') {
     res.json({key: 'post red'})
   } else if (req.body.color === 'blue') {
