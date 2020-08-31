@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>深度优先遍历</title>
+</head>
+<body>
+  
+</body>
+<script>
+  const tree = {
+      val: 1,
+      left: {
+        val: 2,
+        left: {
+          val:3,
+        },
+        right: {
+          val: 4
+        }
+      },
+      right: {
+        val: 5
+      }
+    }
+  let binaryTreePaths = function (root) {
+    let res = []
+    if (!root) {
+      return res
+    }
+
+    if (!root.left && !root.right) {
+      return [`${root.val}`]
+    }
+
+    let leftPaths = binaryTreePaths(root.left)
+    let rightPaths = binaryTreePaths(root.right)
+
+    leftPaths.forEach((leftPath) => {
+      res.push(`${root.val}->${leftPath}`)
+    })
+    rightPaths.forEach((rightPath) => {
+      res.push(`${root.val}->${rightPath}`)
+    })
+
+    return res
+  }
+  console.log(binaryTreePaths(tree));
+</script>
+</html>

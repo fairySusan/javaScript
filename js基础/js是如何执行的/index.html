@@ -12,7 +12,7 @@
   <p>
     开始运行你的代码的时候，js引擎会创建一个“全局执行上下文”,初始化这个执行上下文会干三件事：
     1.生成一个全局对象window，或者global（node执行的时候） 2.初始化this， this指向window，或者global（node执行的时候）
-    3. 将全局变量 都初始化为undefined,name:undefined, handle:undefined 函数都声明，但是函数没有函数体，getUser: fn()。这个时候还没有开始执行一行代码。
+    3.将全局变量 都初始化为undefined,name:undefined, handle:undefined 函数都声明，但是函数没有函数体，getUser: fn()。这个时候还没有开始执行一行代码。
     接着是执行上下文：一行代码一行代码的执行。 给变量赋值，name: "susan" handle:"@tylermcginnis"  但是函数还是getUser: fn()。
   </p>
   <p>
