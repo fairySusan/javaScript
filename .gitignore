@@ -1,6 +1,7 @@
 .DS_Store
 package-lock.json
 node_modules/
+项目工程化/node_modules/
 # IDE
 .idea
 .vscode
