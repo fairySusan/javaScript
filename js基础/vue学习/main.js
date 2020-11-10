@@ -2,9 +2,24 @@
 var ComponentA = {
   template: '<h3>这里是局部注册的组件</h3>', // 局部注册组件
 };
+// h()三个参数， 第一个是tag/组件名 第二个是原生标签的attribute或者组件的props，第三个是子节点string/Array
 var ComponentB = {
+  data () {
+    return {
+      foo: true
+    }
+  },
+  // 渲染函数
   render: function (h) {
-    return h('div', '这里是render渲染的');    // 渲染函数
+    if (this.foo) {
+      return h('div', {}, [
+          '我是文本节点',
+          h('span',{class: 'redcolor'},'这里是render渲染的')
+        ]
+      ); 
+    } else {
+      return h('h1', {}, 'title')
+    }
   }
 }
 
