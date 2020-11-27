@@ -6,7 +6,7 @@ function getUserAction(e) {
 }
 // 第一版 不在wait时间范围内点击的事件会立即执行
 function throttle(func, wait) {
-  var previous = 0;
+  var previous = 0;                       
   return function(...args) {
       var now = +new Date();
       if (now - previous > wait) {
