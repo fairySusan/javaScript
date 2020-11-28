@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "inlineSourceMap": false, //默认: false 开启生成 sourcemap,所有的sourcemap都在一个文件中，最终只有一个.map文件
+    "sourceMap": false, //默认: false, 将sourcemap生成独立的.map文件,一个js对应一个.map文件
+    "inlineSources": false, //默认: false 将代码与sourcemaps生成到同一个文件中，必须先开启inlineSourceMap 或 sourceMap
+    "isolatedModules": false,
+    "outDir": "./build", // 编译后的文件的放置目录
+    "target": "ESNext", // 编译后的js应为哪个版本
+    "module": "ESNext",
+    "moduleResolution": "Node", // 模块解析策略
+    "noEmitOnError": true, // 在发生错误的时候，停止编译成js代码
+    "baseUrl": ".", //解析“非相对模块名“的基准目录
+    "paths": { // 路径映射，实现路径别名
+      "@/*": [
+        "src/*"
+      ]
+    }
+  },
+  "include": [
+      "src/**/*"
+  ],
+  "exclude": [
+      "node_modules",
+      "**/*.spec.ts"
+  ]
+}
