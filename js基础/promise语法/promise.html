@@ -16,4 +16,21 @@
 <h3 style="color: red">放入异步队列里的是回调函数，比如setTimeout的回调函数、axios的回调函数，是回调函数延后执行</h3>
 </body>
 <script src="./main.js"></script>
+<script type="text/javascript">
+	/*
+	一个函数体里调用一个需要很长时间的函数，并且这个函数跟后面执行的代码并无关系， 那么需要将此函数做成异步执行
+	*/
+	function fn1() {
+		console.log('xascdsa');
+	}
+
+	function fn2() {
+		const p = new Promise((resolve, reject) => {
+			resolve();
+		});
+		p.then(() => { fn1(); });
+		console.log('我要先执行');
+	}
+	fn2();
+</script>
 </html>

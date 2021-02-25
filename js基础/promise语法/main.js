@@ -92,7 +92,7 @@ GPromise.REJECTED = 'rejected';
 function foo () {
     const testpp = new GPromise((resolve, reject) => {
         console.log(2)
-        resolve(3)
+        reject(3)
     })
     testpp.then((res) => {
         console.log(res)
