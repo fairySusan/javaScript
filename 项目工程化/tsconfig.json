@@ -17,7 +17,7 @@
     }
   },
   "include": [
-      "src/**/*"
+      "src/**/*" // json文件报错先排查 include的文件夹下有没有ts文，没有就新建一个错误就会消失
   ],
   "exclude": [
       "node_modules",
