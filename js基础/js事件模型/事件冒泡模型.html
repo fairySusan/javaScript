@@ -43,9 +43,9 @@
     <h2>事件监听中的addEventListener可以添加多个事件而不用担心被覆盖(这种叫做添加事件监听器)
     只有一种写法：监听方法</h2>
 	<h3>添加事件监听器的方法可以选择冒泡事件模型还是捕获事件模型</h3>
-	<div id="box1" onclick="f1()">
+	<div id="box1">
 		box1
-		<div id="box2" onclick="f2()">
+		<div id="box2">
 			box2
 			<div id="box3">box3</div>
 		</div>
@@ -61,15 +61,23 @@
 		console.log('box2被点击');
 	}
 	function f3(event){
+		event.preventDefault();// 通知浏览器不要执行与事件关联的默认动作。
 		alert('box3被点击');
 		console.log('box3被点击');
 		// event.stopPropagation();//阻止事件冒泡，加了这一句点击box3，就只会弹出box3的弹框
-		event.preventDefault();//阻止被点击的元素的事件发生
 	}
-	// document.getElementById('box3').addEventListener('click',function(){
-	// 	if (event.target == this) {
-	// 		alert('box3被点击');
-	// 	}
-	// })
+
+	 // 第三个参数是useCapture: boolean, true：是指这个时间监听函数在捕获阶段被执行，为false：指这个事件监听函数在冒泡阶段被执行，默认为false
+	document.getElementById('box1').addEventListener('click',function(){
+		alert('box1被点击');
+	}, true)
+
+	document.getElementById('box2').addEventListener('mouseup',function(){
+		alert('box2被点击');
+	})
+	document.getElementById('box3').addEventListener('click',function(){
+		alert('box3被点击');
+	})
+	// 新发现：mouseup事件先于click事件发生
 </script>
 </html>
