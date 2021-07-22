@@ -24,28 +24,157 @@
         val: 5
       }
     }
-  let binaryTreePaths = function (root) {
+  //一、 二叉树--获取一棵二叉树所有的路径
+  function getBinaryTreePaths (root) {
     let res = []
-    if (!root) {
-      return res
-    }
 
     if (!root.left && !root.right) {
       return [`${root.val}`]
     }
 
-    let leftPaths = binaryTreePaths(root.left)
-    let rightPaths = binaryTreePaths(root.right)
-
-    leftPaths.forEach((leftPath) => {
+    if (root.left) {
+      let leftPaths = getBinaryTreePaths(root.left)
+      leftPaths.forEach((leftPath) => {
       res.push(`${root.val}->${leftPath}`)
-    })
-    rightPaths.forEach((rightPath) => {
-      res.push(`${root.val}->${rightPath}`)
-    })
+      })
+    }
+
+    if (root.right) {
+      let rightPaths = getBinaryTreePaths(root.right)
+      rightPaths.forEach((rightPath) => {
+        res.push(`${root.val}->${rightPath}`)
+      })
+    }
+
 
     return res
   }
-  console.log(binaryTreePaths(tree));
+  console.log(getBinaryTreePaths(tree));
+
+
+  //二、 二叉树-获取一颗二叉树从根节点到目标节点的路径
+  function getBinaryTreeTargetPaths (root) {
+    let res = []
+
+    if (!root.left && !root.right) {
+      if (root.val === 5) {
+        return [`${root.val}`]
+      }
+      return []
+    }
+
+
+    if (root.left) {
+      let leftPaths = getBinaryTreeTargetPaths(root.left)
+      if (leftPaths.length > 0) {
+        res.push(root.val)
+        res = res.concat(leftPaths)
+      }
+    }
+
+    if (root.right) {
+      let rightPaths = getBinaryTreeTargetPaths(root.right)
+      if (rightPaths.length > 0) {
+        res.push(root.val)
+        res = res.concat(rightPaths)
+      }
+    }
+
+    return res
+  }
+
+  console.log(getBinaryTreeTargetPaths(tree));
+
+  const bigTree = {
+    name: 'root',
+    children: [
+      {
+        name: '1',
+        children: [
+          {
+            name: '2',
+          },
+          {
+            name: '3',
+          }
+        ]
+      },
+      {
+        name: '4',
+        children: [
+          {
+            name: '5'
+          }
+        ]
+      },
+      {
+        name: '6',
+        children: [
+          {
+            name: '7'
+          },
+          {
+            name: '8'
+          },
+          {
+            name: '9'
+          }
+        ]
+      },
+    ],
+  }
+
+  // 三、获取一颗树的所有路径
+  function getTreePaths (treeNode) {
+    const paths = []
+
+    if (!treeNode.children) {
+      return [treeNode.name]
+    }
+
+    for (let childNode of treeNode.children) {
+      const res = getTreePaths(childNode);
+      res.forEach(name => {
+        paths.push(`${treeNode.name}->${name}`)
+      })
+    }
+
+    return paths
+
+  }
+
+  console.log(getTreePaths(bigTree))
+
+
+  // 四、获取一棵树的特定节点的路径
+  function getTreeTargetPaths (treeNode, targetName) {
+    const paths = []
+
+    if (!treeNode.children) {
+      if (treeNode.name === targetName) {
+        return [treeNode.name]
+      }
+      return []
+    }
+
+    for (let childNode of treeNode.children) {
+      const res = getTreeTargetPaths(childNode, targetName);
+      if (res.length > 0) {
+        res.forEach(name => {
+         paths.push(`${treeNode.name}->${name}`)
+        });
+        break
+      }
+    }
+
+    return paths
+
+  }
+
+  console.log(getTreeTargetPaths(bigTree, '5'))
+
+
+
+
 </script>
 </html>
