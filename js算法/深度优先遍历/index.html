@@ -52,6 +52,7 @@
   console.log(getBinaryTreePaths(tree));
 
 
+
   //二、 二叉树-获取一颗二叉树从根节点到目标节点的路径
   function getBinaryTreeTargetPaths (root) {
     let res = []
@@ -84,6 +85,40 @@
   }
 
   console.log(getBinaryTreeTargetPaths(tree));
+
+
+// 迭代实现深度优先遍历
+  
+function BFS(rootNode) {
+  const stack = []
+  stack.push(rootNode)
+  const res = []
+
+  const currPath = [rootNode.val]
+
+  while(stack.length) {
+    const top = stack.pop();
+
+    const path = currPath.pop()
+
+    if (!top.right && !top.left) res.push(path)
+
+    if (top.right) {
+      stack.push(top.right);
+      currPath.push(`${path}->${top.right.val}`)
+    }
+
+    if (top.left) {
+      stack.push(top.left);
+      currPath.push(`${path}->${top.left.val}`)
+    }
+  }
+
+  return res
+}
+
+
+console.log('迭代实现深度优先遍历:', BFS(tree));
 
   const bigTree = {
     name: 'root',
