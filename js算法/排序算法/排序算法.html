@@ -30,9 +30,9 @@
 	var a = [1,2,3,4,5,6,7,8];
 	// 1.冒泡排序
 	var bubbleSort = function(arr){
-		let flag = true;
 		let len = arr.length;
 		for(let i=0;i<len-1;i++){
+			let flag = true;
 			for(let j=0;j<len-1-i;j++){
 				if(arr[j]>arr[j+1]){//升序排序
 					let temp = arr[j+1];
@@ -41,8 +41,8 @@
 					flag = false;
 				}
 			}
-			if (flag) { // 对于已经排序好的数组外层for 循环只需循环一次
-				break;
+			if (flag) { // 优化最好的情况下的排序时间复杂度为O(n), 外层循环一次，里层循环n次
+				break
 			}
 		}
 		return arr;
